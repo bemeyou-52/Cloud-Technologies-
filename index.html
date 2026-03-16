@@ -191,7 +191,8 @@
         const KEY = 'sb_publishable_hczXGnVXfEvYibWZxvmjzg_2fCbpiAS';
         const supabase = createClient(URL, KEY);
 
-        const MY_ID = '04d89ec7-59eb-4ab5-8aba-8d143201306e';
+        const { data: { user } } = await supabase.auth.getUser();
+        const MY_ID = user?.id;
 
         // Изменение статуса
         window.changeStatus = async (text, color) => {
