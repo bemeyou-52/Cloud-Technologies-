@@ -80,6 +80,31 @@
             grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
+        .google-logout {
+          padding: 12px 26px;
+          font-size: 16px;
+          font-weight: 600;
+          color: #fff;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+
+          background: linear-gradient(135deg, #ff4b5c, #d80032);
+          box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+
+          transition: all 0.2s ease;
+          margin-top: 10px;
+        }
+
+        .google-logout:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        }
+
+        .google-logout:active {
+          transform: translateY(1px);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
 
         .status-btn {
             padding: 14px 10px;
@@ -147,14 +172,10 @@
         <!-- Профиль -->
         <div class="card">
             <h2>Мой профиль</h2>
-            <button class="google-login" onclick="login()">Login with Google</button>
-            <script>
-                async function login() {
-                  const { data, error } = await supabase.auth.signInWithOAuth({
-                    provider: "google"
-                  });
-                }
-            </script>
+            <div id="authButtons">
+                <button class="google-login" onclick="login()">Войти через Google</button>
+                <button class="google-logout" onclick="logout()" style="display:none;">Выйти</button>
+            </div>
             <p id="myInfo">Загрузка...</p>
 
             <div class="status-grid">
@@ -165,12 +186,39 @@
             </div>
         </div>
 
-        <!-- Монитор группы -->
-        <div class="card">
-            <h2>Монитор группы</h2>
-            <div id="groupList">Загрузка...</div>
-        </div>
-    </div> 
+        <script>
+        async function login() {
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                    redirectTo: window.location.href
+                }
+            });
+
+            if (error) return console.error(error);
+        }
+
+        async function logout() {
+            const { error } = await supabase.auth.signOut();
+            if (error) return console.error(error);
+
+            document.getElementById('myInfo').innerText = "Вы вышли";
+            document.querySelector('.google-login').style.display = "inline-block";
+            document.querySelector('.google-logout').style.display = "none";
+        }
+
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (session && session.user) {
+                document.getElementById('myInfo').innerText = `Вы зашли как: ${session.user.email}`;
+                document.querySelector('.google-login').style.display = "none";
+                document.querySelector('.google-logout').style.display = "inline-block";
+            } else {
+                document.getElementById('myInfo').innerText = "Вы не вошли";
+                document.querySelector('.google-login').style.display = "inline-block";
+                document.querySelector('.google-logout').style.display = "none";
+            }
+        });
+        </script>
 
     <script type="module">
         import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
