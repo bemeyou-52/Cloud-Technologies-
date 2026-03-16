@@ -4,93 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Статус группы</title>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #0f0f13;
+            --surface: #18181f;
+            --surface2: #1f1f2a;
+            --border: rgba(255,255,255,0.07);
+            --text: #f0f0f5;
+            --text-muted: #7a7a90;
+            --accent: #7c6dfa;
+            --accent2: #fa6d6d;
+            --study: #4ade80;
+            --coffee: #fbbf24;
+            --game: #38bdf8;
+            --home: #94a3b8;
+            --radius: 18px;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #e8eaed;
+            font-family: 'Manrope', sans-serif;
+            background: var(--bg);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 40px 16px;
+            padding: 40px 16px 60px;
+            color: var(--text);
+        }
+
+        /* Фон — сетка */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(124,109,250,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124,109,250,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
         }
 
+        /* Заголовок */
+        .app-header {
+            text-align: center;
+            padding: 8px 0 4px;
+        }
+
+        .app-header h1 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff 40%, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .app-header p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Карточки */
         .card {
-            background: #ffffff;
-            border-radius: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             padding: 24px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
         }
 
-        .card h2 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 8px;
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(124,109,250,0.5), transparent);
         }
 
-        #myInfo {
-            font-size: 14px;
-            color: #444;
-            margin-bottom: 16px;
-        }
-
-        .google-login, .google-logout {
-            padding: 12px 26px;
-            font-size: 16px;
+        .card-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 13px;
             font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        /* Профиль */
+        .profile-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding: 14px;
+            background: var(--surface2);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            min-height: 62px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .profile-info strong {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .profile-info small {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Auth кнопки */
+        .auth-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn-login {
+            flex: 1;
+            padding: 12px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-            transition: all 0.2s ease;
-        }
-
-        .google-login {
-            color: #222;
-            background: linear-gradient(135deg, #ffd84d, #ffb300);
-        }
-
-        .google-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-        }
-
-        .google-login:active {
-            transform: translateY(1px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .google-logout {
+            background: linear-gradient(135deg, var(--accent), #a78bfa);
             color: #fff;
-            background: linear-gradient(135deg, #ff4b5c, #d80032);
-            margin-top: 10px;
+            transition: opacity 0.2s, transform 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .google-logout:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        .btn-login:hover { opacity: 0.85; transform: translateY(-1px); }
+        .btn-login:active { transform: translateY(1px); }
+
+        .btn-logout {
+            padding: 12px 18px;
+            border: 1px solid rgba(250,109,109,0.3);
+            border-radius: 12px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            background: rgba(250,109,109,0.1);
+            color: var(--accent2);
+            transition: background 0.2s;
         }
 
-        .google-logout:active {
-            transform: translateY(1px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
+        .btn-logout:hover { background: rgba(250,109,109,0.2); }
 
+        /* Статусы */
         .status-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -98,118 +196,293 @@
         }
 
         .status-btn {
-            padding: 14px 10px;
-            border: none;
-            border-radius: 10px;
-            font-size: 15px;
+            padding: 16px 10px;
+            border: 1px solid transparent;
+            border-radius: 14px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: opacity 0.15s, transform 0.1s;
-            color: #fff;
+            transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .status-btn:hover {
-            opacity: 0.88;
-            transform: scale(0.98);
+        .status-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0);
+            transition: background 0.15s;
         }
 
-        .status-btn:active {
-            transform: scale(0.95);
+        .status-btn:hover::after { background: rgba(255,255,255,0.06); }
+        .status-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+        .status-btn:active { transform: translateY(1px); box-shadow: none; }
+
+        .btn-study {
+            background: rgba(74,222,128,0.1);
+            border-color: rgba(74,222,128,0.25);
+            color: var(--study);
+        }
+        .btn-coffee {
+            background: rgba(251,191,36,0.1);
+            border-color: rgba(251,191,36,0.25);
+            color: var(--coffee);
+        }
+        .btn-game {
+            background: rgba(56,189,248,0.1);
+            border-color: rgba(56,189,248,0.25);
+            color: var(--game);
+        }
+        .btn-home {
+            background: rgba(148,163,184,0.1);
+            border-color: rgba(148,163,184,0.25);
+            color: var(--home);
         }
 
-        .btn-study  { background: #3cb54a; }
-        .btn-coffee { background: #f5a623; border: 2px solid #d4861a; }
-        .btn-game   { background: #00b5ad; }
-        .btn-home   { background: #888888; }
+        .status-btn.active {
+            box-shadow: 0 0 0 2px currentColor, 0 8px 20px rgba(0,0,0,0.25);
+        }
 
+        /* Список группы */
         #groupList {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 8px;
+            gap: 10px;
         }
 
         .user-item {
             display: flex;
             align-items: center;
             gap: 12px;
+            padding: 12px 14px;
+            background: var(--surface2);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: border-color 0.3s;
+            animation: fadeIn 0.3s ease;
         }
 
-        .status-dot {
-            width: 14px;
-            height: 14px;
+        .user-item:hover { border-color: rgba(124,109,250,0.2); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-dot {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             flex-shrink: 0;
+            box-shadow: 0 0 6px currentColor;
         }
 
-        .user-item strong {
-            font-size: 15px;
-            color: #1a1a1a;
-            display: block;
+        .user-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
         }
 
-        .user-item small {
-            font-size: 13px;
-            color: #666;
+        .user-status {
+            font-size: 12px;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* Pulse для текущего пользователя */
+        .is-me .user-dot {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Обновление */
+        .refresh-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 14px;
+        }
+
+        .last-updated {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .refresh-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--study);
+            animation: blink 3s infinite;
+        }
+
+        @keyframes blink {
+            0%, 90%, 100% { opacity: 1; }
+            95% { opacity: 0; }
+        }
+
+        /* Skeleton loading */
+        .skeleton {
+            background: linear-gradient(90deg, var(--surface2) 25%, rgba(255,255,255,0.04) 50%, var(--surface2) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+            height: 44px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .hidden { display: none !important; }
+
+        /* Toast */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 100;
+            white-space: nowrap;
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
     </style>
 </head>
 <body>
     <div class="container">
+
+        <div class="app-header">
+            <h1>Статус группы</h1>
+            <p>Онлайн-монитор · обновление каждые 5 сек</p>
+        </div>
+
         <!-- Профиль -->
         <div class="card">
-            <h2>Мой профиль</h2>
-            <div id="authButtons">
-                <button class="google-login" onclick="login()">Войти через Google</button>
-                <button class="google-logout" onclick="logout()" style="display:none;">Выйти</button>
+            <div class="card-title">Мой профиль</div>
+
+            <div class="profile-block">
+                <div class="avatar" id="avatarEmoji">👤</div>
+                <div class="profile-info">
+                    <strong id="myName">Не авторизован</strong>
+                    <small id="myStatus">—</small>
+                </div>
             </div>
-            <p id="myInfo">Загрузка...</p>
+
+            <div class="auth-row" id="authRow">
+                <button class="btn-login" id="btnLogin" onclick="login()">
+                    <svg width="18" height="18" viewBox="0 0 48 48" fill="none">
+                        <path d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.5 6.5 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.2-.1-2.4-.4-3.5z" fill="#FFC107"/>
+                        <path d="M6.3 14.7l6.6 4.8C14.7 16.1 19 13 24 13c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.5 7.5 29.6 5 24 5 16.2 5 9.4 9.1 6.3 14.7z" fill="#FF3D00"/>
+                        <path d="M24 44c5.5 0 10.4-2 14.1-5.2l-6.5-5.5C29.6 35.1 26.9 36 24 36c-5.3 0-9.7-3.3-11.4-8H6.1C9.2 34.9 16 40 24 40v4z" fill="#4CAF50"/>
+                        <path d="M43.6 20.5H42V20H24v8h11.3c-.9 2.4-2.5 4.5-4.6 5.9l6.5 5.5C37 39 44 34 44 24c0-1.2-.1-2.4-.4-3.5z" fill="#1976D2"/>
+                    </svg>
+                    Войти через Google
+                </button>
+                <button class="btn-logout hidden" id="btnLogout" onclick="logout()">Выйти</button>
+            </div>
 
             <div class="status-grid">
-                <button class="status-btn btn-study"  onclick="changeStatus('📚 Учусь', '#3cb54a')">📚 Учусь</button>
-                <button class="status-btn btn-coffee" onclick="changeStatus('☕ Кофе-брейк', '#f5a623')">☕ Кофе</button>
-                <button class="status-btn btn-game"   onclick="changeStatus('🎮 В игре', '#00b5ad')">🎮 В игре</button>
-                <button class="status-btn btn-home"   onclick="changeStatus('🏠 Дома', '#888888')">🏠 Дома</button>
+                <button class="status-btn btn-study"  onclick="changeStatus('📚 Учусь', '#4ade80', this)">📚 Учусь</button>
+                <button class="status-btn btn-coffee" onclick="changeStatus('☕ Кофе-брейк', '#fbbf24', this)">☕ Кофе</button>
+                <button class="status-btn btn-game"   onclick="changeStatus('🎮 В игре', '#38bdf8', this)">🎮 В игре</button>
+                <button class="status-btn btn-home"   onclick="changeStatus('🏠 Дома', '#94a3b8', this)">🏠 Дома</button>
             </div>
         </div>
 
         <!-- Монитор группы -->
         <div class="card">
-            <h2>Монитор группы</h2>
-            <div id="groupList">Загрузка...</div>
+            <div class="card-title">Участники группы</div>
+            <div id="groupList">
+                <div class="skeleton"></div>
+                <div class="skeleton"></div>
+                <div class="skeleton"></div>
+            </div>
+            <div class="refresh-bar">
+                <span class="last-updated" id="lastUpdated">Ожидание...</span>
+                <div class="refresh-dot"></div>
+            </div>
         </div>
-    </div> 
+
+    </div>
+
+    <div id="toast"></div>
 
     <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-        const URL = 'https://rvsatjlrxvbrnwzyhuip.supabase.co';
-        const KEY = 'sb_publishable_hczXGnVXfEvYibWZxvmjzg_2fCbpiAS';
-        const supabase = createClient(URL, KEY);
+        // ====== НАСТРОЙКИ — замените на свои ======
+        const SUPABASE_URL = 'https://rvsatjlrxvbrnwzyhuip.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ2c2F0amxyeHZicm53enlodWlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNzcxMjAsImV4cCI6MjA4ODk1MzEyMH0.k18RyeTEL_UySmgeSIIQ__-Ko_fQ4HnbXsPQtVaM0E0'; // Settings → API → anon publi
+        // ==========================================
 
-        const { data: { user } } = await supabase.auth.getUser();
-        const MY_ID = user?.id;
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        let currentUser = null;
+        let currentStatus = null;
 
-        // Изменение статуса
-        window.changeStatus = async (text, color) => {
+        // Toast-уведомление
+        function showToast(msg, color = '#7c6dfa') {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.style.borderColor = color + '55';
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2500);
+        }
+
+        // Смена статуса
+        window.changeStatus = async (text, color, btn) => {
+            if (!currentUser) {
+                showToast('⚠️ Сначала войдите в аккаунт', '#fa6d6d');
+                return;
+            }
+
+            document.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
             const { error } = await supabase
                 .from('profiles')
                 .update({ status: text, color: color })
-                .eq('id', MY_ID);
+                .eq('id', currentUser.id);
 
             if (error) {
-                alert("Ошибка! Проверьте RLS политики в Supabase.");
+                showToast('❌ Ошибка обновления статуса', '#fa6d6d');
                 console.error(error);
             } else {
+                currentStatus = text;
+                document.getElementById('myStatus').textContent = text;
+                showToast('✓ Статус обновлён');
                 fetchGroup();
             }
         };
 
-        // Получение списка группы
+        // Получение и отрисовка группы
         async function fetchGroup() {
             const { data, error } = await supabase
                 .from('profiles')
@@ -219,56 +492,96 @@
             if (error) return console.error(error);
 
             const list = document.getElementById('groupList');
-            list.innerHTML = data.map(user => `
-                <div class="user-item">
-                    <div class="status-dot" style="background: ${user.color || '#ccc'}"></div>
-                    <div style="flex-grow: 1;">
-                        <strong>${user.username}</strong><br>
-                        <small>${user.status || 'Статус не задан'}</small>
-                    </div>
-                </div>
-            `).join('');
+            if (!data || data.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-muted);font-size:13px;text-align:center;padding:10px 0;">Участников пока нет</p>';
+                return;
+            }
 
-            const me = data.find(u => u.id === MY_ID);
-            if (me) document.getElementById('myInfo').innerText = `Вы зашли как: ${me.username}`;
+            list.innerHTML = data.map(user => {
+                const isMe = currentUser && user.id === currentUser.id;
+                const dotColor = user.color || '#94a3b8';
+                return `
+                    <div class="user-item ${isMe ? 'is-me' : ''}">
+                        <div class="user-dot" style="background:${dotColor}; color:${dotColor};"></div>
+                        <span class="user-name">${user.username || 'Без имени'}${isMe ? ' <span style="font-size:11px;color:var(--accent);">(вы)</span>' : ''}</span>
+                        <span class="user-status">${user.status || 'Нет статуса'}</span>
+                    </div>
+                `;
+            }).join('');
+
+            const now = new Date();
+            document.getElementById('lastUpdated').textContent =
+                `Обновлено в ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')}`;
         }
 
-        fetchGroup();
-        setInterval(fetchGroup, 5000);
+        // Обновление UI профиля
+        function updateProfileUI(user) {
+            if (user) {
+                const name = user.user_metadata?.full_name || user.email?.split('@')[0] || 'Пользователь';
+                const emoji = ['🦊','🐼','🦁','🐨','🦋','🐙','🦄','🐸'][Math.floor(Math.random() * 8)];
+                document.getElementById('myName').textContent = name;
+                document.getElementById('myStatus').textContent = currentStatus || 'Статус не задан';
+                document.getElementById('avatarEmoji').textContent = emoji;
+                document.getElementById('btnLogin').classList.add('hidden');
+                document.getElementById('btnLogout').classList.remove('hidden');
+            } else {
+                document.getElementById('myName').textContent = 'Не авторизован';
+                document.getElementById('myStatus').textContent = '—';
+                document.getElementById('avatarEmoji').textContent = '👤';
+                document.getElementById('btnLogin').classList.remove('hidden');
+                document.getElementById('btnLogout').classList.add('hidden');
+                document.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+            }
+        }
 
         // Вход через Google
-        async function login() {
-            const { data, error } = await supabase.auth.signInWithOAuth({
-                provider: "google",
-                options: {
-                    redirectTo: window.location.href
-                }
+        window.login = async () => {
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: { redirectTo: window.location.href }
             });
-            if (error) return console.error(error);
-        }
+            if (error) {
+                showToast('❌ Ошибка входа', '#fa6d6d');
+                console.error(error);
+            }
+        };
 
         // Выход
-        async function logout() {
+        window.logout = async () => {
             const { error } = await supabase.auth.signOut();
             if (error) return console.error(error);
+            currentUser = null;
+            updateProfileUI(null);
+            showToast('Вы вышли из аккаунта', '#94a3b8');
+        };
 
-            document.getElementById('myInfo').innerText = "Вы вышли";
-            document.querySelector('.google-login').style.display = "inline-block";
-            document.querySelector('.google-logout').style.display = "none";
+        // Авто-регистрация в profiles при первом входе
+        async function upsertProfile(user) {
+            const name = user.user_metadata?.full_name || user.email?.split('@')[0] || 'Пользователь';
+            await supabase.from('profiles').upsert({
+                id: user.id,
+                username: name,
+                status: '🏠 Дома',
+                color: '#94a3b8'
+            }, { onConflict: 'id', ignoreDuplicates: true });
         }
 
-        // Автообновление интерфейса при входе/выходе
-        supabase.auth.onAuthStateChange((event, session) => {
-            if (session && session.user) {
-                document.getElementById('myInfo').innerText = `Вы зашли как: ${session.user.email}`;
-                document.querySelector('.google-login').style.display = "none";
-                document.querySelector('.google-logout').style.display = "inline-block";
+        // Слушатель авторизации
+        supabase.auth.onAuthStateChange(async (event, session) => {
+            if (session?.user) {
+                currentUser = session.user;
+                await upsertProfile(currentUser);
+                updateProfileUI(currentUser);
+                fetchGroup();
             } else {
-                document.getElementById('myInfo').innerText = "Вы не вошли";
-                document.querySelector('.google-login').style.display = "inline-block";
-                document.querySelector('.google-logout').style.display = "none";
+                currentUser = null;
+                updateProfileUI(null);
             }
         });
+
+        // Первый запуск
+        fetchGroup();
+        setInterval(fetchGroup, 5000);
     </script>
 </body>
 </html>
