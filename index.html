@@ -122,6 +122,14 @@
         <!-- Профиль -->
         <div class="card">
             <h2>Мой профиль</h2>
+            <button onclick="login()">Login with Google</button>
+            <script>
+                async function login() {
+                  const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: "google"
+                  });
+                }
+            </script>
             <p id="myInfo">Загрузка...</p>
 
             <div class="status-grid">
