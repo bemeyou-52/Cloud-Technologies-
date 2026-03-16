@@ -22,6 +22,31 @@
             padding: 40px 16px;
         }
 
+        .google-login {
+          padding: 12px 26px;
+          font-size: 16px;
+          font-weight: 600;
+          color: #222;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+
+          background: linear-gradient(135deg, #ffd84d, #ffb300);
+          box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+
+          transition: all 0.2s ease;
+        }
+
+        .google-login:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        }
+
+        .google-login:active {
+          transform: translateY(1px);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
         .container {
             width: 100%;
             max-width: 500px;
@@ -122,7 +147,7 @@
         <!-- Профиль -->
         <div class="card">
             <h2>Мой профиль</h2>
-            <button onclick="login()">Login with Google</button>
+            <button class="google-login" onclick="login()">Login with Google</button>
             <script>
                 async function login() {
                   const { data, error } = await supabase.auth.signInWithOAuth({
