@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Статус группы</title>
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         :root {
             --bg: #0f0f13;
             --surface: #18181f;
@@ -25,16 +27,20 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #e8eaed;
             font-family: 'Manrope', sans-serif;
             background: var(--bg);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            padding: 40px 16px;
             padding: 40px 16px 60px;
             color: var(--text);
         }
 
+        /* Фон — сетка */
         body::before {
             content: '';
             position: fixed;
@@ -49,14 +55,17 @@
 
         .container {
             width: 100%;
+            max-width: 500px;
             max-width: 480px;
             display: flex;
             flex-direction: column;
+            gap: 16px;
             gap: 20px;
             position: relative;
             z-index: 1;
         }
 
+        /* Заголовок */
         .app-header {
             text-align: center;
             padding: 8px 0 4px;
@@ -78,42 +87,24 @@
             margin-top: 4px;
         }
 
-        .online-summary {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 8px;
-            background: rgba(74,222,128,0.08);
-            border: 1px solid rgba(74,222,128,0.2);
-            border-radius: 20px;
-            padding: 4px 14px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--study);
-        }
-
-        .online-summary-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--study);
-            animation: blink-green 2s infinite;
-        }
-
-        @keyframes blink-green {
-            0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--study); }
-            50%       { opacity: 0.4; box-shadow: none; }
-        }
-
+        /* Карточки */
         .card {
+            background: #ffffff;
+            border-radius: 16px;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             padding: 24px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
             position: relative;
             overflow: hidden;
         }
 
+        .card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
         .card::before {
             content: '';
             position: absolute;
@@ -122,6 +113,10 @@
             background: linear-gradient(90deg, transparent, rgba(124,109,250,0.5), transparent);
         }
 
+        #myInfo {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 16px;
         .card-title {
             font-family: 'Unbounded', sans-serif;
             font-size: 13px;
@@ -132,6 +127,16 @@
             margin-bottom: 18px;
         }
 
+        .google-login, .google-logout {
+            padding: 12px 26px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+        /* Профиль */
         .profile-block {
             display: flex;
             align-items: center;
@@ -144,13 +149,9 @@
             min-height: 62px;
         }
 
-        .avatar-wrap {
-            position: relative;
-            flex-shrink: 0;
-            width: 40px;
-            height: 40px;
-        }
-
+        .google-login {
+            color: #222;
+            background: linear-gradient(135deg, #ffd84d, #ffb300);
         .avatar {
             width: 40px;
             height: 40px;
@@ -160,26 +161,12 @@
             align-items: center;
             justify-content: center;
             font-size: 18px;
+            flex-shrink: 0;
         }
 
-        .online-ring {
-            position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            border: 2px solid var(--study);
-            animation: ring-pulse 2.5s infinite;
-            display: none;
-        }
-
-        .online-ring.visible { display: block; }
-
-        @keyframes ring-pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50%       { opacity: 0.5; transform: scale(1.08); }
-        }
-
-        .profile-info { flex: 1; min-width: 0; }
-
+        .google-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
         .profile-info strong {
             display: block;
             font-size: 15px;
@@ -187,40 +174,28 @@
             color: var(--text);
         }
 
+        .google-login:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         .profile-info small {
             font-size: 12px;
             color: var(--text-muted);
         }
 
-        .my-study-timer {
-            display: none;
-            align-items: center;
-            gap: 6px;
-            margin-top: 5px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--study);
-            font-variant-numeric: tabular-nums;
-        }
-
-        .my-study-timer.active { display: flex; }
-
-        .timer-spin {
-            display: inline-block;
-            animation: spin 4s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-        }
-
+        .google-logout {
+            color: #fff;
+            background: linear-gradient(135deg, #ff4b5c, #d80032);
+            margin-top: 10px;
+        /* Auth кнопки */
         .auth-row {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
         }
 
+        .google-logout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
         .btn-login {
             flex: 1;
             padding: 12px;
@@ -239,6 +214,9 @@
             gap: 8px;
         }
 
+        .google-logout:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         .btn-login:hover { opacity: 0.85; transform: translateY(-1px); }
         .btn-login:active { transform: translateY(1px); }
 
@@ -257,6 +235,7 @@
 
         .btn-logout:hover { background: rgba(250,109,109,0.2); }
 
+        /* Статусы */
         .status-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -264,6 +243,10 @@
         }
 
         .status-btn {
+            padding: 14px 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
             padding: 16px 10px;
             border: 1px solid transparent;
             border-radius: 14px;
@@ -275,11 +258,16 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: opacity 0.15s, transform 0.1s;
+            color: #fff;
             transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
             position: relative;
             overflow: hidden;
         }
 
+        .status-btn:hover {
+            opacity: 0.88;
+            transform: scale(0.98);
         .status-btn::after {
             content: '';
             position: absolute;
@@ -288,22 +276,47 @@
             transition: background 0.15s;
         }
 
+        .status-btn:active {
+            transform: scale(0.95);
         .status-btn:hover::after { background: rgba(255,255,255,0.06); }
         .status-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
         .status-btn:active { transform: translateY(1px); box-shadow: none; }
 
-        .btn-study  { background: rgba(74,222,128,0.1);  border-color: rgba(74,222,128,0.25);  color: var(--study); }
-        .btn-coffee { background: rgba(251,191,36,0.1);  border-color: rgba(251,191,36,0.25);  color: var(--coffee); }
-        .btn-game   { background: rgba(56,189,248,0.1);  border-color: rgba(56,189,248,0.25);  color: var(--game); }
-        .btn-home   { background: rgba(148,163,184,0.1); border-color: rgba(148,163,184,0.25); color: var(--home); }
+        .btn-study {
+            background: rgba(74,222,128,0.1);
+            border-color: rgba(74,222,128,0.25);
+            color: var(--study);
+        }
+        .btn-coffee {
+            background: rgba(251,191,36,0.1);
+            border-color: rgba(251,191,36,0.25);
+            color: var(--coffee);
+        }
+        .btn-game {
+            background: rgba(56,189,248,0.1);
+            border-color: rgba(56,189,248,0.25);
+            color: var(--game);
+        }
+        .btn-home {
+            background: rgba(148,163,184,0.1);
+            border-color: rgba(148,163,184,0.25);
+            color: var(--home);
+        }
 
+        .btn-study  { background: #3cb54a; }
+        .btn-coffee { background: #f5a623; border: 2px solid #d4861a; }
+        .btn-game   { background: #00b5ad; }
+        .btn-home   { background: #888888; }
         .status-btn.active {
             box-shadow: 0 0 0 2px currentColor, 0 8px 20px rgba(0,0,0,0.25);
         }
 
+        /* Список группы */
         #groupList {
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
             gap: 10px;
         }
 
@@ -319,50 +332,28 @@
             animation: fadeIn 0.3s ease;
         }
 
+        .status-dot {
+            width: 14px;
+            height: 14px;
         .user-item:hover { border-color: rgba(124,109,250,0.2); }
-        .user-item.is-online-item { border-color: rgba(74,222,128,0.15); }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(6px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        .dot-wrap {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            width: 16px;
-            height: 16px;
-        }
-
         .user-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
+            flex-shrink: 0;
             box-shadow: 0 0 6px currentColor;
-            position: relative;
-            z-index: 1;
         }
 
-        .dot-ripple {
-            position: absolute;
-            inset: -2px;
-            border-radius: 50%;
-            border: 1.5px solid;
-            opacity: 0;
-        }
-
-        .dot-ripple.active {
-            animation: ripple-out 2s infinite;
-        }
-
-        @keyframes ripple-out {
-            0%   { transform: scale(1); opacity: 0.7; }
-            100% { transform: scale(2.4); opacity: 0; }
-        }
-
+        .user-item strong {
+            font-size: 15px;
+            color: #1a1a1a;
+            display: block;
         .user-name {
             font-size: 14px;
             font-weight: 600;
@@ -370,54 +361,28 @@
             flex: 1;
         }
 
-        .online-label {
-            display: inline-block;
-            background: rgba(74,222,128,0.15);
-            color: var(--study);
-            font-size: 10px;
-            font-weight: 700;
-            padding: 1px 7px;
-            border-radius: 10px;
-            margin-left: 6px;
-            vertical-align: middle;
-            letter-spacing: 0.3px;
-        }
-
-        .user-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 3px;
-        }
-
+        .user-item small {
+            font-size: 13px;
+            color: #666;
         .user-status {
             font-size: 12px;
             color: var(--text-muted);
             background: rgba(255,255,255,0.05);
             padding: 3px 10px;
             border-radius: 20px;
-            white-space: nowrap;
         }
 
-        .user-study-timer {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--study);
-            font-variant-numeric: tabular-nums;
-            display: none;
-        }
-
-        .user-study-timer.visible { display: block; }
-
+        /* Pulse для текущего пользователя */
         .is-me .user-dot {
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
             0%, 100% { opacity: 1; }
-            50%       { opacity: 0.4; }
+            50% { opacity: 0.4; }
         }
 
+        /* Обновление */
         .refresh-bar {
             display: flex;
             align-items: center;
@@ -425,7 +390,10 @@
             margin-top: 14px;
         }
 
-        .last-updated { font-size: 11px; color: var(--text-muted); }
+        .last-updated {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
 
         .refresh-dot {
             width: 6px;
@@ -440,6 +408,7 @@
             95% { opacity: 0; }
         }
 
+        /* Skeleton loading */
         .skeleton {
             background: linear-gradient(90deg, var(--surface2) 25%, rgba(255,255,255,0.04) 50%, var(--surface2) 75%);
             background-size: 200% 100%;
@@ -449,12 +418,13 @@
         }
 
         @keyframes shimmer {
-            0%   { background-position: 200% 0; }
+            0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
 
         .hidden { display: none !important; }
 
+        /* Toast */
         #toast {
             position: fixed;
             bottom: 30px;
@@ -486,28 +456,21 @@
         <div class="app-header">
             <h1>Статус группы</h1>
             <p>Онлайн-монитор · обновление каждые 5 сек</p>
-            <div class="online-summary">
-                <div class="online-summary-dot"></div>
-                <span id="onlineCount">0 онлайн</span>
-            </div>
         </div>
 
         <!-- Профиль -->
         <div class="card">
+            <h2>Мой профиль</h2>
+            <div id="authButtons">
+                <button class="google-login" onclick="login()">Войти через Google</button>
+                <button class="google-logout" onclick="logout()" style="display:none;">Выйти</button>
             <div class="card-title">Мой профиль</div>
 
             <div class="profile-block">
-                <div class="avatar-wrap">
-                    <div class="avatar" id="avatarEmoji">👤</div>
-                    <div class="online-ring" id="myOnlineRing"></div>
-                </div>
+                <div class="avatar" id="avatarEmoji">👤</div>
                 <div class="profile-info">
                     <strong id="myName">Не авторизован</strong>
                     <small id="myStatus">—</small>
-                    <div class="my-study-timer" id="myStudyTimer">
-                        <span class="timer-spin">⏱</span>
-                        <span id="myStudyTime">0ч 0м 0с</span>
-                    </div>
                 </div>
             </div>
 
@@ -523,8 +486,13 @@
                 </button>
                 <button class="btn-logout hidden" id="btnLogout" onclick="logout()">Выйти</button>
             </div>
+            <p id="myInfo">Загрузка...</p>
 
             <div class="status-grid">
+                <button class="status-btn btn-study"  onclick="changeStatus('📚 Учусь', '#3cb54a')">📚 Учусь</button>
+                <button class="status-btn btn-coffee" onclick="changeStatus('☕ Кофе-брейк', '#f5a623')">☕ Кофе</button>
+                <button class="status-btn btn-game"   onclick="changeStatus('🎮 В игре', '#00b5ad')">🎮 В игре</button>
+                <button class="status-btn btn-home"   onclick="changeStatus('🏠 Дома', '#888888')">🏠 Дома</button>
                 <button class="status-btn btn-study"  onclick="changeStatus('📚 Учусь', '#4ade80', this)">📚 Учусь</button>
                 <button class="status-btn btn-coffee" onclick="changeStatus('☕ Кофе-брейк', '#fbbf24', this)">☕ Кофе</button>
                 <button class="status-btn btn-game"   onclick="changeStatus('🎮 В игре', '#38bdf8', this)">🎮 В игре</button>
@@ -534,6 +502,8 @@
 
         <!-- Монитор группы -->
         <div class="card">
+            <h2>Монитор группы</h2>
+            <div id="groupList">Загрузка...</div>
             <div class="card-title">Участники группы</div>
             <div id="groupList">
                 <div class="skeleton"></div>
@@ -545,60 +515,26 @@
                 <div class="refresh-dot"></div>
             </div>
         </div>
+    </div> 
 
     </div>
 
     <div id="toast"></div>
 
     <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
         import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-        const SUPABASE_URL     = 'https://rvsatjlrxvbrnwzyhuip.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ2c2F0amxyeHZicm53enlodWlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNzcxMjAsImV4cCI6MjA4ODk1MzEyMH0.k18RyeTEL_UySmgeSIIQ__-Ko_fQ4HnbXsPQtVaM0E0';
+        // ====== НАСТРОЙКИ — замените на свои ======
+        const SUPABASE_URL = 'https://rvsatjlrxvbrnwzyhuip.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ2c2F0amxyeHZicm53enlodWlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNzcxMjAsImV4cCI6MjA4ODk1MzEyMH0.k18RyeTEL_UySmgeSIIQ__-Ko_fQ4HnbXsPQtVaM0E0'; // Settings → API → anon publi
+        // ==========================================
 
         const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        let currentUser  = null;
+        let currentUser = null;
         let currentStatus = null;
 
-        // ── Study timer ─────────────────────────────────────────────
-        let studyStartMap  = {};   // userId -> Date (for all visible users)
-        let myStudyInterval = null;
-
-        function formatDuration(seconds) {
-            const h = Math.floor(seconds / 3600);
-            const m = Math.floor((seconds % 3600) / 60);
-            const s = seconds % 60;
-            return `${h}ч ${m}м ${s}с`;
-        }
-
-        // Tick every second — updates all visible study timers
-        setInterval(() => {
-            for (const [uid, startDate] of Object.entries(studyStartMap)) {
-                const el = document.getElementById(`studytimer-${uid}`);
-                if (!el) continue;
-                const elapsed = Math.floor((Date.now() - startDate.getTime()) / 1000);
-                el.textContent = '⏱ ' + formatDuration(elapsed);
-            }
-            // My own timer in profile block
-            if (myStudyInterval === 'active' && currentUser && studyStartMap[currentUser.id]) {
-                const elapsed = Math.floor((Date.now() - studyStartMap[currentUser.id].getTime()) / 1000);
-                document.getElementById('myStudyTime').textContent = formatDuration(elapsed);
-            }
-        }, 1000);
-
-        function showMyStudyTimer(startedAt) {
-            studyStartMap[currentUser.id] = new Date(startedAt);
-            myStudyInterval = 'active';
-            document.getElementById('myStudyTimer').classList.add('active');
-        }
-
-        function hideMyStudyTimer() {
-            myStudyInterval = null;
-            if (currentUser) delete studyStartMap[currentUser.id];
-            document.getElementById('myStudyTimer').classList.remove('active');
-        }
-
-        // ── Toast ────────────────────────────────────────────────────
+        // Toast-уведомление
         function showToast(msg, color = '#7c6dfa') {
             const t = document.getElementById('toast');
             t.textContent = msg;
@@ -607,181 +543,126 @@
             setTimeout(() => t.classList.remove('show'), 2500);
         }
 
-        // ── Change status ────────────────────────────────────────────
+        const URL = 'https://rvsatjlrxvbrnwzyhuip.supabase.co';
+        const KEY = 'sb_publishable_hczXGnVXfEvYibWZxvmjzg_2fCbpiAS';
+        const supabase = createClient(URL, KEY);
+        // Смена статуса
         window.changeStatus = async (text, color, btn) => {
-            if (!currentUser) { showToast('⚠️ Сначала войдите в аккаунт', '#fa6d6d'); return; }
-
-            document.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const isStudy = text.startsWith('📚');
-            const now     = new Date().toISOString();
-            const payload = { status: text, color, last_seen: now };
-
-            if (isStudy) {
-                // Keep existing start time if already studying
-                const { data: cur } = await supabase.from('profiles')
-                    .select('status, study_started_at').eq('id', currentUser.id).single();
-                if (!cur?.status?.startsWith('📚')) {
-                    payload.study_started_at = now;
-                } else {
-                    // already studying — don't reset
-                }
-            } else {
-                payload.study_started_at = null;
-            }
-
-            const { error } = await supabase.from('profiles').update(payload).eq('id', currentUser.id);
-
-            if (error) { showToast('❌ Ошибка обновления статуса', '#fa6d6d'); console.error(error); return; }
-
-            currentStatus = text;
-            document.getElementById('myStatus').textContent = text;
-
-            if (isStudy) {
-                // Fetch the authoritative start time
-                const { data } = await supabase.from('profiles')
-                    .select('study_started_at').eq('id', currentUser.id).single();
-                if (data?.study_started_at) showMyStudyTimer(data.study_started_at);
-            } else {
-                hideMyStudyTimer();
-            }
-
-            showToast('✓ Статус обновлён');
-            fetchGroup();
-        };
-
-        // ── Fetch & render group ─────────────────────────────────────
-        async function fetchGroup() {
-            const { data, error } = await supabase
-                .from('profiles').select('*').order('username', { ascending: true });
-
-            if (error) return console.error(error);
-
-            const list = document.getElementById('groupList');
-            if (!data || data.length === 0) {
-                list.innerHTML = '<p style="color:var(--text-muted);font-size:13px;text-align:center;padding:10px 0;">Участников пока нет</p>';
-                document.getElementById('onlineCount').textContent = '0 онлайн';
+            if (!currentUser) {
+                showToast('⚠️ Сначала войдите в аккаунт', '#fa6d6d');
                 return;
             }
 
-            const now = Date.now();
-            const ONLINE_MS = 15000;
-            let onlineCount = 0;
-            const newStudyMap = {};
+        const { data: { user } } = await supabase.auth.getUser();
+        const MY_ID = user?.id;
+            document.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+        // Изменение статуса
+        window.changeStatus = async (text, color) => {
+            const { error } = await supabase
+                .from('profiles')
+                .update({ status: text, color: color })
+                .eq('id', MY_ID);
+                .eq('id', currentUser.id);
+
+            if (error) {
+                alert("Ошибка! Проверьте RLS политики в Supabase.");
+                showToast('❌ Ошибка обновления статуса', '#fa6d6d');
+                console.error(error);
+            } else {
+                currentStatus = text;
+                document.getElementById('myStatus').textContent = text;
+                showToast('✓ Статус обновлён');
+                fetchGroup();
+            }
+        };
+
+        // Получение списка группы
+        // Получение и отрисовка группы
+        async function fetchGroup() {
+            const { data, error } = await supabase
+                .from('profiles')
+@@ -219,56 +492,96 @@ <h2>Монитор группы</h2>
+            if (error) return console.error(error);
+
+            const list = document.getElementById('groupList');
+            list.innerHTML = data.map(user => `
+                <div class="user-item">
+                    <div class="status-dot" style="background: ${user.color || '#ccc'}"></div>
+                    <div style="flex-grow: 1;">
+                        <strong>${user.username}</strong><br>
+                        <small>${user.status || 'Статус не задан'}</small>
+            if (!data || data.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-muted);font-size:13px;text-align:center;padding:10px 0;">Участников пока нет</p>';
+                return;
+            }
 
             list.innerHTML = data.map(user => {
-                const isMe    = currentUser && user.id === currentUser.id;
+                const isMe = currentUser && user.id === currentUser.id;
                 const dotColor = user.color || '#94a3b8';
-
-                // Online check: last_seen within 15 s
-                const lastSeen = user.last_seen ? new Date(user.last_seen).getTime() : 0;
-                const isOnline = (now - lastSeen) < ONLINE_MS;
-                if (isOnline) onlineCount++;
-
-                // Study timer
-                const isStudying = user.status?.startsWith('📚') && user.study_started_at;
-                if (isStudying) newStudyMap[user.id] = new Date(user.study_started_at);
-
-                const timerId = `studytimer-${user.id}`;
-                const elapsed = isStudying
-                    ? Math.floor((now - new Date(user.study_started_at).getTime()) / 1000)
-                    : 0;
-
                 return `
-                    <div class="user-item ${isMe ? 'is-me' : ''} ${isOnline ? 'is-online-item' : ''}">
-                        <div class="dot-wrap">
-                            <div class="user-dot" style="background:${dotColor}; color:${dotColor};"></div>
-                            <div class="dot-ripple ${isOnline ? 'active' : ''}" style="border-color:${dotColor};"></div>
-                        </div>
-                        <span class="user-name">
-                            ${user.username || 'Без имени'}
-                            ${isMe ? '<span style="font-size:11px;color:var(--accent);">(вы)</span>' : ''}
-                            ${isOnline ? '<span class="online-label">онлайн</span>' : ''}
-                        </span>
-                        <div class="user-right">
-                            <span class="user-status">${user.status || 'Нет статуса'}</span>
-                            ${isStudying
-                                ? `<span class="user-study-timer visible" id="${timerId}">⏱ ${formatDuration(elapsed)}</span>`
-                                : ''}
-                        </div>
+                    <div class="user-item ${isMe ? 'is-me' : ''}">
+                        <div class="user-dot" style="background:${dotColor}; color:${dotColor};"></div>
+                        <span class="user-name">${user.username || 'Без имени'}${isMe ? ' <span style="font-size:11px;color:var(--accent);">(вы)</span>' : ''}</span>
+                        <span class="user-status">${user.status || 'Нет статуса'}</span>
                     </div>
+                </div>
+            `).join('');
                 `;
             }).join('');
 
-            // Preserve my own entry in studyStartMap even if I'm logged in
-            if (currentUser && studyStartMap[currentUser.id]) {
-                newStudyMap[currentUser.id] = studyStartMap[currentUser.id];
-            }
-            // Merge: don't reset timers for others already running
-            for (const [uid, date] of Object.entries(newStudyMap)) {
-                studyStartMap[uid] = date;
-            }
-            // Remove users no longer studying
-            for (const uid of Object.keys(studyStartMap)) {
-                if (!newStudyMap[uid]) delete studyStartMap[uid];
-            }
-
-            // Online badge count
-            document.getElementById('onlineCount').textContent =
-                onlineCount === 0 ? 'нет онлайн' :
-                onlineCount === 1 ? '1 онлайн'   : `${onlineCount} онлайн`;
-
-            // My avatar ring
-            if (currentUser) {
-                const myRow  = data.find(u => u.id === currentUser.id);
-                const meOnline = myRow
-                    ? (now - new Date(myRow.last_seen || 0).getTime()) < ONLINE_MS
-                    : false;
-                document.getElementById('myOnlineRing').classList.toggle('visible', meOnline);
-            }
-
-            const ts = new Date();
+            const me = data.find(u => u.id === MY_ID);
+            if (me) document.getElementById('myInfo').innerText = `Вы зашли как: ${me.username}`;
+            const now = new Date();
             document.getElementById('lastUpdated').textContent =
-                `Обновлено в ${ts.getHours().toString().padStart(2,'0')}:${ts.getMinutes().toString().padStart(2,'0')}:${ts.getSeconds().toString().padStart(2,'0')}`;
+                `Обновлено в ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')}`;
         }
 
-        // ── Heartbeat every 10s ──────────────────────────────────────
-        async function sendHeartbeat() {
-            if (!currentUser) return;
-            await supabase.from('profiles')
-                .update({ last_seen: new Date().toISOString() })
-                .eq('id', currentUser.id);
-        }
-
-        setInterval(sendHeartbeat, 10000);
-
-        // ── Profile UI ───────────────────────────────────────────────
+        fetchGroup();
+        setInterval(fetchGroup, 5000);
+        // Обновление UI профиля
         function updateProfileUI(user) {
             if (user) {
-                const name  = user.user_metadata?.full_name || user.email?.split('@')[0] || 'Пользователь';
+                const name = user.user_metadata?.full_name || user.email?.split('@')[0] || 'Пользователь';
                 const emoji = ['🦊','🐼','🦁','🐨','🦋','🐙','🦄','🐸'][Math.floor(Math.random() * 8)];
-                document.getElementById('myName').textContent   = name;
+                document.getElementById('myName').textContent = name;
                 document.getElementById('myStatus').textContent = currentStatus || 'Статус не задан';
                 document.getElementById('avatarEmoji').textContent = emoji;
                 document.getElementById('btnLogin').classList.add('hidden');
                 document.getElementById('btnLogout').classList.remove('hidden');
             } else {
-                document.getElementById('myName').textContent   = 'Не авторизован';
+                document.getElementById('myName').textContent = 'Не авторизован';
                 document.getElementById('myStatus').textContent = '—';
                 document.getElementById('avatarEmoji').textContent = '👤';
                 document.getElementById('btnLogin').classList.remove('hidden');
                 document.getElementById('btnLogout').classList.add('hidden');
                 document.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
-                document.getElementById('myOnlineRing').classList.remove('visible');
-                hideMyStudyTimer();
             }
         }
 
-        // ── Google auth ──────────────────────────────────────────────
+        // Вход через Google
+        async function login() {
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                    redirectTo: window.location.href
+                }
         window.login = async () => {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: { redirectTo: window.location.href }
             });
-            if (error) { showToast('❌ Ошибка входа', '#fa6d6d'); console.error(error); }
+            if (error) return console.error(error);
+        }
+            if (error) {
+                showToast('❌ Ошибка входа', '#fa6d6d');
+                console.error(error);
+            }
         };
 
+        // Выход
+        async function logout() {
         window.logout = async () => {
             const { error } = await supabase.auth.signOut();
             if (error) return console.error(error);
@@ -790,46 +671,43 @@
             showToast('Вы вышли из аккаунта', '#94a3b8');
         };
 
-        // ── Upsert on first login ────────────────────────────────────
+            document.getElementById('myInfo').innerText = "Вы вышли";
+            document.querySelector('.google-login').style.display = "inline-block";
+            document.querySelector('.google-logout').style.display = "none";
+        // Авто-регистрация в profiles при первом входе
         async function upsertProfile(user) {
             const name = user.user_metadata?.full_name || user.email?.split('@')[0] || 'Пользователь';
             await supabase.from('profiles').upsert({
                 id: user.id,
                 username: name,
                 status: '🏠 Дома',
-                color: '#94a3b8',
-                last_seen: new Date().toISOString()
+                color: '#94a3b8'
             }, { onConflict: 'id', ignoreDuplicates: true });
         }
 
-        // ── Auth state ───────────────────────────────────────────────
+        // Автообновление интерфейса при входе/выходе
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (session && session.user) {
+                document.getElementById('myInfo').innerText = `Вы зашли как: ${session.user.email}`;
+                document.querySelector('.google-login').style.display = "none";
+                document.querySelector('.google-logout').style.display = "inline-block";
+        // Слушатель авторизации
         supabase.auth.onAuthStateChange(async (event, session) => {
             if (session?.user) {
                 currentUser = session.user;
                 await upsertProfile(currentUser);
                 updateProfileUI(currentUser);
-
-                // Restore study timer if already studying
-                const { data } = await supabase.from('profiles')
-                    .select('status, study_started_at').eq('id', currentUser.id).single();
-                if (data?.status?.startsWith('📚') && data.study_started_at) {
-                    currentStatus = data.status;
-                    document.getElementById('myStatus').textContent = data.status;
-                    showMyStudyTimer(data.study_started_at);
-                    document.querySelectorAll('.status-btn').forEach(b => {
-                        if (b.textContent.trim().startsWith('📚')) b.classList.add('active');
-                    });
-                }
-
-                sendHeartbeat();
                 fetchGroup();
             } else {
+                document.getElementById('myInfo').innerText = "Вы не вошли";
+                document.querySelector('.google-login').style.display = "inline-block";
+                document.querySelector('.google-logout').style.display = "none";
                 currentUser = null;
                 updateProfileUI(null);
             }
         });
 
-        // ── Init ─────────────────────────────────────────────────────
+        // Первый запуск
         fetchGroup();
         setInterval(fetchGroup, 5000);
     </script>
