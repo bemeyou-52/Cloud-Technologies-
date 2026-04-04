@@ -31,8 +31,6 @@ body {
   color: var(--text);
 }
 .wrap { width:100%; max-width:420px; display:flex; flex-direction:column; gap:14px; }
-
-/* CARD */
 .card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -49,16 +47,11 @@ body {
   border-bottom: 1px solid var(--border);
   text-transform: uppercase;
 }
-
 /* LOGIN */
-#loginScreen {
-  text-align:center;
-  padding: 44px 24px;
-}
+#loginScreen { text-align:center; padding: 44px 24px; }
 #loginScreen .logo { font-size:52px; margin-bottom:14px; }
 #loginScreen h2 {
-  font-family:'Unbounded',sans-serif; font-size:19px; font-weight:900;
-  margin-bottom:8px;
+  font-family:'Unbounded',sans-serif; font-size:19px; font-weight:900; margin-bottom:8px;
 }
 #loginScreen p { font-size:13px; color:var(--muted); line-height:1.55; margin-bottom:28px; }
 .btn-google {
@@ -69,12 +62,8 @@ body {
   cursor:pointer; transition:opacity .2s, transform .15s;
 }
 .btn-google:hover { opacity:.85; transform:translateY(-1px); }
-
 /* USER HEADER */
-.user-header {
-  display:flex; align-items:center; gap:12px;
-  padding:16px 18px 0;
-}
+.user-header { display:flex; align-items:center; gap:12px; padding:16px 18px 0; }
 .avatar {
   width:44px; height:44px; border-radius:50%;
   background:linear-gradient(135deg,#667eea,#764ba2);
@@ -88,59 +77,40 @@ body {
 }
 .uname { font-size:15px; font-weight:700; }
 .ustatus { font-size:12px; color:var(--muted); margin-top:2px; }
-
 /* BIG TIMER */
-.timer-block {
-  text-align:center;
-  padding: 18px 18px 10px;
-}
+.timer-block { text-align:center; padding: 18px 18px 10px; }
 .timer-ico { font-size:30px; display:block; margin-bottom:4px; }
 .timer-ico.spin { animation: spin 3s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
 .timer-ico.swing { animation: swing 1.8s ease-in-out infinite; }
 @keyframes swing { 0%,100%{transform:rotate(-10deg)} 50%{transform:rotate(10deg)} }
-
 .timer-val {
   font-family:'Unbounded',sans-serif;
   font-size:40px; font-weight:900; letter-spacing:-2px;
-  font-variant-numeric:tabular-nums;
-  transition: color .3s;
+  font-variant-numeric:tabular-nums; transition: color .3s;
 }
 .timer-label { font-size:12px; color:var(--muted); margin-top:4px; }
-
-/* ACTIVITY BUTTONS */
+/* ACTIVITY */
 .activity-section { padding:14px 18px; }
-.activity-title {
-  font-size:11px; font-weight:700; color:var(--muted);
-  text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px;
-}
+.activity-title { font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
 .activity-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-
 .act-btn {
-  padding:14px 10px;
-  border-radius:14px; border:2px solid transparent;
+  padding:14px 10px; border-radius:14px; border:2px solid transparent;
   font-family:'Golos Text',sans-serif; font-size:14px; font-weight:700;
   cursor:pointer; display:flex; align-items:center; justify-content:center; gap:7px;
-  transition:transform .15s, box-shadow .2s, border-color .2s;
-  position:relative; overflow:hidden;
+  transition:transform .15s, box-shadow .2s, border-color .2s; position:relative;
 }
 .act-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.12); }
 .act-btn:active { transform:translateY(0); }
-.act-btn.active {
-  border-color: currentColor !important;
-  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 20%, transparent) !important;
-}
-
+.act-btn.active { border-color: currentColor !important; box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 20%, transparent) !important; }
 .act-study  { background:#f0fdf4; color:#15803d; border-color:#bbf7d0; }
 .act-hw     { background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe; }
 .act-coffee { background:#fffbeb; color:#92400e; border-color:#fde68a; }
 .act-game   { background:#f5f3ff; color:#6d28d9; border-color:#ddd6fe; }
-
-/* CONTROL BUTTONS */
+/* CONTROLS */
 .ctrl-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:0 18px 18px; }
 .ctrl-btn {
-  padding:12px 10px;
-  border-radius:12px; border:none;
+  padding:12px 10px; border-radius:12px; border:none;
   font-family:'Golos Text',sans-serif; font-size:14px; font-weight:700;
   cursor:pointer; display:flex; align-items:center; justify-content:center; gap:7px;
   transition:filter .2s, transform .15s;
@@ -148,22 +118,18 @@ body {
 .ctrl-btn:hover { filter:brightness(.93); transform:translateY(-1px); }
 .ctrl-btn:active { transform:translateY(0); }
 .ctrl-btn:disabled { opacity:.4; cursor:not-allowed; transform:none; }
-
 .btn-pause  { background:#fffbeb; color:#92400e; border:1.5px solid #fde68a; }
 .btn-end    { background:#fef2f2; color:#991b1b; border:1.5px solid #fecaca; }
 .btn-logout { background:#f1f5f9; color:var(--muted); border:1.5px solid var(--border); }
 .btn-start  { background:var(--green); color:#fff; }
-
 /* GROUP */
 .online-bar {
   display:flex; align-items:center; gap:7px;
-  padding:10px 18px 4px;
-  font-size:12px; font-weight:700; color:#15803d;
+  padding:10px 18px 4px; font-size:12px; font-weight:700; color:#15803d;
 }
 .pulse-dot {
   width:8px; height:8px; border-radius:50%;
-  background:var(--green);
-  animation:pulse-g 2s infinite;
+  background:var(--green); animation:pulse-g 2s infinite;
 }
 @keyframes pulse-g {
   0%,100%{ box-shadow:0 0 0 0 rgba(34,197,94,.45); }
@@ -174,33 +140,39 @@ body {
   display:flex; align-items:center; gap:10px;
   padding:10px 12px; background:var(--bg);
   border-radius:11px; border:1px solid var(--border);
-  animation:fadeUp .25s ease;
+  animation:fadeUp .25s ease; flex-wrap:wrap;
 }
 .mrow.online-row { border-color:#bbf7d0; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
-
 .mdot-wrap { width:14px; height:14px; position:relative; flex-shrink:0; }
 .mdot { width:10px; height:10px; border-radius:50%; position:absolute; top:2px; left:2px; }
-.mdot-ripple {
-  position:absolute; inset:-2px; border-radius:50%;
-  border:1.5px solid; opacity:0;
-}
+.mdot-ripple { position:absolute; inset:-2px; border-radius:50%; border:1.5px solid; opacity:0; }
 .mdot-ripple.on { animation:ripple 2s infinite; }
 @keyframes ripple { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(2.6);opacity:0} }
-
 .mname { font-size:13px; font-weight:600; flex:1; }
 .me-tag { font-size:10px; color:var(--blue); font-weight:700; margin-left:4px; }
 .online-tag {
-  font-size:9px; font-weight:700;
-  background:#f0fdf4; color:#15803d;
-  padding:1px 6px; border-radius:8px;
-  border:1px solid #bbf7d0; margin-left:4px;
+  font-size:9px; font-weight:700; background:#f0fdf4; color:#15803d;
+  padding:1px 6px; border-radius:8px; border:1px solid #bbf7d0; margin-left:4px;
 }
 .mright { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
 .mstatus { font-size:11px; color:var(--muted); }
 .mtimer { font-size:11px; font-weight:700; color:var(--green); font-variant-numeric:tabular-nums; display:none; }
 .mtimer.show { display:block; }
-
+/* РЕАКЦИИ */
+.reaction-row {
+  width:100%; display:flex; gap:5px; padding-top:6px;
+  border-top:1px solid var(--border); margin-top:4px;
+}
+.react-btn {
+  padding:3px 8px; border-radius:8px; border:1px solid var(--border);
+  background:var(--card); font-size:13px; cursor:pointer;
+  transition:transform .15s, background .15s; display:flex; align-items:center; gap:3px;
+}
+.react-btn:hover { transform:scale(1.15); background:#f8fafc; }
+.react-btn.mine { background:#f0fdf4; border-color:#bbf7d0; }
+.react-count { font-size:11px; font-weight:700; color:var(--muted); }
+/* REFRESH */
 .refresh-row {
   display:flex; align-items:center; justify-content:space-between;
   padding:6px 18px 14px;
@@ -208,18 +180,34 @@ body {
 .refresh-row span { font-size:11px; color:var(--muted); }
 .live-dot { width:6px; height:6px; border-radius:50%; background:var(--green); animation:blink 2.5s infinite; }
 @keyframes blink { 0%,90%,100%{opacity:1} 95%{opacity:0} }
-
 .skeleton {
   height:44px; border-radius:10px;
   background:linear-gradient(90deg,var(--bg) 25%,var(--border) 50%,var(--bg) 75%);
   background-size:200% 100%; animation:shimmer 1.4s infinite;
 }
 @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-
+/* ИСТОРИЯ СЕССИЙ */
+.sessions-list { display:flex; flex-direction:column; gap:6px; padding:12px 18px; }
+.sess-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:9px 12px; background:var(--bg);
+  border-radius:10px; border:1px solid var(--border);
+  font-size:13px;
+}
+.sess-act { font-weight:600; }
+.sess-dur { font-weight:700; color:var(--green); font-size:12px; }
+.sess-date { font-size:11px; color:var(--muted); }
+.sess-empty { text-align:center; color:var(--muted); font-size:13px; padding:24px 0; }
+.stat-row {
+  display:flex; gap:8px; padding:12px 18px 4px; flex-wrap:wrap;
+}
+.stat-pill {
+  padding:5px 12px; border-radius:20px; font-size:12px; font-weight:700;
+  background:var(--bg); border:1px solid var(--border);
+}
 /* CHAT */
 .chat-messages {
-  height:200px; overflow-y:auto;
-  padding:14px 18px 8px;
+  height:200px; overflow-y:auto; padding:14px 18px 8px;
   display:flex; flex-direction:column; gap:8px;
   scrollbar-width:thin; scrollbar-color:var(--border) transparent;
 }
@@ -230,22 +218,17 @@ body {
 .cmsg.mine .cauthor { color:var(--green); text-align:right; }
 .cmsg.mine .cbubble { margin-left:auto; background:#f0fdf4; border-color:#bbf7d0; }
 .cbubble {
-  display:inline-block; max-width:88%;
-  padding:7px 12px; background:var(--bg);
-  border:1px solid var(--border); border-radius:10px;
+  display:inline-block; max-width:88%; padding:7px 12px;
+  background:var(--bg); border:1px solid var(--border); border-radius:10px;
   font-size:13px; line-height:1.4; word-break:break-word;
 }
 .chat-input-row {
-  display:flex; gap:8px;
-  padding:10px 14px 14px;
-  border-top:1px solid var(--border);
+  display:flex; gap:8px; padding:10px 14px 14px; border-top:1px solid var(--border);
 }
 .chat-input {
-  flex:1; padding:10px 14px;
-  border:1.5px solid var(--border); border-radius:10px;
+  flex:1; padding:10px 14px; border:1.5px solid var(--border); border-radius:10px;
   font-family:'Golos Text',sans-serif; font-size:13px;
-  background:var(--bg); color:var(--text); outline:none;
-  transition:border-color .2s;
+  background:var(--bg); color:var(--text); outline:none; transition:border-color .2s;
 }
 .chat-input::placeholder { color:var(--muted); }
 .chat-input:focus { border-color:#94a3b8; }
@@ -258,17 +241,12 @@ body {
 .btn-send:hover { filter:brightness(.9); transform:scale(1.05); }
 .btn-send:disabled { opacity:.4; cursor:not-allowed; transform:none; }
 .chat-empty { text-align:center; color:var(--muted); font-size:13px; padding:32px 0; }
-
-
-
 /* TOAST */
 #toast {
   position:fixed; bottom:28px; left:50%;
   transform:translateX(-50%) translateY(12px);
-  background:var(--text); color:#fff;
-  padding:10px 20px; border-radius:10px;
-  font-size:13px; font-weight:600;
-  opacity:0; transition:all .25s;
+  background:var(--text); color:#fff; padding:10px 20px; border-radius:10px;
+  font-size:13px; font-weight:600; opacity:0; transition:all .25s;
   pointer-events:none; z-index:999; white-space:nowrap;
 }
 #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
@@ -277,8 +255,7 @@ body {
 </head>
 <body>
 <div class="wrap">
-
-  <!-- ── LOGIN ── -->
+  <!-- LOGIN -->
   <div class="card" id="loginScreen">
     <div class="logo">🎓</div>
     <h2>Монитор группы</h2>
@@ -294,7 +271,7 @@ body {
     </button>
   </div>
 
-  <!-- ── MAIN APP ── -->
+  <!-- MAIN APP -->
   <div id="mainApp" class="hidden">
 
     <!-- Timer card -->
@@ -306,32 +283,23 @@ body {
           <div class="ustatus" id="myStatusText">Выбери действие ниже</div>
         </div>
       </div>
-
       <div class="timer-block">
         <span class="timer-ico" id="timerIco">⏱</span>
         <div class="timer-val" id="timerVal" style="color:var(--muted);">0 сек.</div>
         <div class="timer-label" id="timerLabel">Нет активной сессии</div>
       </div>
-
-      <!-- Activity chooser -->
       <div class="activity-section">
         <div class="activity-title">Чем занимаешься?</div>
         <div class="activity-grid">
-          <button class="act-btn act-study"  id="act-study"  onclick="pickActivity('📚 Учусь','#22c55e','study',  this)">📚 Учусь</button>
-          <button class="act-btn act-hw"     id="act-hw"     onclick="pickActivity('📝 Делаю ДЗ','#3b82f6','hw', this)">📝 Делаю ДЗ</button>
-          <button class="act-btn act-coffee" id="act-coffee" onclick="pickActivity('☕ Пью кофе','#f59e0b','coffee',this)">☕ Пью кофе</button>
-          <button class="act-btn act-game"   id="act-game"   onclick="pickActivity('🎮 Играю','#8b5cf6','game',   this)">🎮 Играю</button>
+          <button class="act-btn act-study"  onclick="pickActivity('📚 Учусь','#22c55e','study',this)">📚 Учусь</button>
+          <button class="act-btn act-hw"     onclick="pickActivity('📝 Делаю ДЗ','#3b82f6','hw',this)">📝 Делаю ДЗ</button>
+          <button class="act-btn act-coffee" onclick="pickActivity('☕ Пью кофе','#f59e0b','coffee',this)">☕ Пью кофе</button>
+          <button class="act-btn act-game"   onclick="pickActivity('🎮 Играю','#8b5cf6','game',this)">🎮 Играю</button>
         </div>
       </div>
-
-      <!-- Controls: pause / end / logout -->
       <div class="ctrl-row">
-        <button class="ctrl-btn btn-pause" id="btnPause" onclick="togglePause()" disabled>
-          ☕ Перерыв
-        </button>
-        <button class="ctrl-btn btn-end" id="btnEnd" onclick="endSession()" disabled>
-          ⛔ Завершить
-        </button>
+        <button class="ctrl-btn btn-pause" id="btnPause" onclick="togglePause()" disabled>☕ Перерыв</button>
+        <button class="ctrl-btn btn-end"   id="btnEnd"   onclick="endSession()"  disabled>⛔ Завершить</button>
       </div>
       <div style="padding:0 18px 18px;">
         <button class="ctrl-btn btn-logout" style="width:100%;" onclick="doLogout()">🚪 Выход</button>
@@ -355,6 +323,15 @@ body {
       </div>
     </div>
 
+    <!-- ── НОВАЯ ФУНКЦИЯ 1: История сессий ── -->
+    <div class="card">
+      <div class="card-head">📊 Моя история сессий</div>
+      <div class="stat-row" id="statRow"></div>
+      <div class="sessions-list" id="sessionsList">
+        <div class="sess-empty">Сессий пока нет</div>
+      </div>
+    </div>
+
     <!-- Chat -->
     <div class="card">
       <div class="card-head">💬 Общий чат</div>
@@ -370,11 +347,8 @@ body {
       </div>
     </div>
 
-
-
-  </div><!-- /mainApp -->
+  </div>
 </div>
-
 <div id="toast"></div>
 
 <script type="module">
@@ -384,22 +358,29 @@ const SUPABASE_URL = 'https://rvsatjlrxvbrnwzyhuip.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ2c2F0amxyeHZicm53enlodWlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNzcxMjAsImV4cCI6MjA4ODk1MzEyMH0.k18RyeTEL_UySmgeSIIQ__-Ko_fQ4HnbXsPQtVaM0E0';
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const ONLINE_MS    = 15000;
-const HB_MS        = 8000;
-const REFRESH_MS   = 5000;
+// ─── КОНСТАНТЫ ───────────────────────────────────────────────────────────────
+// ONLINE_MS: если человек не слал heartbeat больше 12 секунд — считаем офлайн
+// Уменьшили с 15000 до 12000, чтобы счётчик точнее отражал реальность
+const ONLINE_MS  = 12000;
+// HB_MS: heartbeat каждые 5 секунд вместо 8 — человек попадает в онлайн быстрее
+const HB_MS      = 5000;
+const REFRESH_MS = 5000;
 const EMOJIS = ['🦊','🐼','🦁','🐨','🦋','🐙','🦄','🐸','🐯','🦝'];
 
-let me = null;
-let sessionStart  = null;   // Date when current activity started
-let paused        = false;  // перерыв?
-let pausedAt      = null;   // Date when paused
-let pausedTotal   = 0;      // total paused ms (before current pause)
-let currentAct    = null;   // 'study'|'hw'|'coffee'|'game'|null
-let memberTimers  = {};
-let hbTimer       = null;
-let chatSub       = null;
+let me           = null;
+let sessionStart = null;
+let paused       = false;
+let pausedAt     = null;
+let pausedTotal  = 0;
+let currentAct   = null;
+let memberTimers = {};
+let hbTimer      = null;
+let chatSub      = null;
+let reactSub     = null;
+// Кэш реакций: { [toUserId]: { emoji, fromMe } }
+let reactionsCache = {};
 
-/* ── UTILS ─────────────────────────────────── */
+// ─── УТИЛИТЫ ─────────────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const nowIso = () => new Date().toISOString();
@@ -413,24 +394,17 @@ function fmtShort(sec) {
   const h = Math.floor(sec/3600), m = Math.floor((sec%3600)/60), s = sec%60;
   return `${h}ч ${m}м ${s}с`;
 }
-
 function toast(msg) {
   const t = $('toast'); t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2300);
 }
 
-/* ── TIMER TICK (every second) ─────────────── */
-const ACT_COLORS = { study:'#22c55e', hw:'#3b82f6', coffee:'#f59e0b', game:'#8b5cf6' };
-const ACT_ICOS   = { study:'swing', hw:'swing', coffee:'spin', game:'swing' };
-const ACT_ICO_CH = { study:'📚', hw:'📝', coffee:'☕', game:'🎮' };
-
+// ─── ТИКЕР (каждую секунду) ──────────────────────────────────────────────────
 setInterval(() => {
-  // My timer
   if (sessionStart && !paused) {
     const elapsed = Math.floor((Date.now() - sessionStart.getTime() - pausedTotal) / 1000);
     $('timerVal').textContent = fmt(elapsed);
   }
-  // Group member timers
   for (const [uid, start] of Object.entries(memberTimers)) {
     const el = document.getElementById(`mt-${uid}`);
     if (!el) continue;
@@ -439,7 +413,7 @@ setInterval(() => {
   }
 }, 1000);
 
-/* ── AUTH ──────────────────────────────────── */
+// ─── AUTH ─────────────────────────────────────────────────────────────────────
 window.doLogin = async () => {
   const { error } = await sb.auth.signInWithOAuth({
     provider: 'google', options: { redirectTo: window.location.href }
@@ -464,10 +438,11 @@ function resetState() {
   me = null; sessionStart = null; paused = false;
   pausedAt = null; pausedTotal = 0; currentAct = null;
   clearInterval(hbTimer);
-  if (chatSub) { chatSub.unsubscribe(); chatSub = null; }
+  if (chatSub)  { chatSub.unsubscribe();  chatSub  = null; }
+  if (reactSub) { reactSub.unsubscribe(); reactSub = null; }
 }
 
-/* ── BOOT ──────────────────────────────────── */
+// ─── BOOT ─────────────────────────────────────────────────────────────────────
 (async () => {
   const { data:{ session } } = await sb.auth.getSession();
   if (session?.user) { me = session.user; await initApp(); }
@@ -477,24 +452,26 @@ sb.auth.onAuthStateChange(async (event, session) => {
   if (session?.user && !me) { me = session.user; await initApp(); }
 });
 
-/* ── INIT ──────────────────────────────────── */
+// ─── INIT ─────────────────────────────────────────────────────────────────────
 async function initApp() {
   $('loginScreen').classList.add('hidden');
   $('mainApp').classList.remove('hidden');
 
-  const name = me.user_metadata?.full_name || me.email?.split('@')[0] || 'Пользователь';
+  const name  = me.user_metadata?.full_name || me.email?.split('@')[0] || 'Пользователь';
   const emoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
   $('avatarEmoji').innerHTML = emoji + '<div class="odot"></div>';
   $('myName').textContent = name;
 
-  // Upsert profile
+  // Upsert профиля
   await sb.from('profiles').upsert({
     id: me.id, username: name,
     status: '🏠 Дома', color: '#94a3b8',
+    // ИСПРАВЛЕНИЕ СЧЁТЧИКА: сразу пишем last_seen при входе,
+    // чтобы пользователь мгновенно появился как онлайн ещё до первого heartbeat
     last_seen: nowIso()
-  }, { onConflict: 'id', ignoreDuplicates: true });
+  }, { onConflict: 'id' });
 
-  // Restore state if was active
+  // Восстановить активную сессию если была
   const { data: prof } = await sb.from('profiles').select('*').eq('id', me.id).single();
   if (prof?.session_started_at && prof.status && prof.status !== '🏠 Дома') {
     sessionStart = new Date(prof.session_started_at);
@@ -503,16 +480,19 @@ async function initApp() {
     if (actKey) { currentAct = actKey; restoreActivityUI(actKey); }
   }
 
-  // Heartbeat
+  // Heartbeat — теперь каждые 5 сек (было 8)
   clearInterval(hbTimer);
   hbTimer = setInterval(heartbeat, HB_MS);
-  heartbeat();
+  // Дополнительный немедленный heartbeat сразу при входе
+  await heartbeat();
 
-  // Group + chat
   fetchGroup();
   setInterval(fetchGroup, REFRESH_MS);
   loadChat();
   subscribeChatRealtime();
+  loadSessions();        // НОВАЯ ФУНКЦИЯ 1
+  loadReactions();       // НОВАЯ ФУНКЦИЯ 2
+  subscribeReactions();  // НОВАЯ ФУНКЦИЯ 2
 }
 
 function statusToKey(status) {
@@ -524,41 +504,29 @@ function statusToKey(status) {
 }
 
 function restoreActivityUI(key) {
-  // Click the right button visually
   const map = { study:'act-study', hw:'act-hw', coffee:'act-coffee', game:'act-game' };
   document.querySelectorAll('.act-btn').forEach(b => b.classList.remove('active'));
-  const btn = $(map[key]);
+  const btn = document.querySelector(`.${map[key]}`);
   if (btn) btn.classList.add('active');
   setTimerUI(key, false);
   enableControls();
 }
 
-/* ── HEARTBEAT ─────────────────────────────── */
+// ─── HEARTBEAT ────────────────────────────────────────────────────────────────
 async function heartbeat() {
   if (!me) return;
   await sb.from('profiles').update({ last_seen: nowIso() }).eq('id', me.id);
 }
 
-/* ── ACTIVITY PICK ─────────────────────────── */
+// ─── ACTIVITY ────────────────────────────────────────────────────────────────
 window.pickActivity = async (label, color, key, btn) => {
   if (!me) { toast('⚠️ Войдите в аккаунт'); return; }
+  if (currentAct === key && !paused) { toast('Уже идёт!'); return; }
+  if (currentAct === key && paused)  { resumeFromPause(); return; }
 
-  // If same activity — do nothing (already running)
-  if (currentAct === key && !paused) {
-    toast('Уже идёт!'); return;
-  }
-
-  // If was paused and picks same — resume
-  if (currentAct === key && paused) {
-    resumeFromPause(); return;
-  }
-
-  // New activity: start fresh
   currentAct   = key;
   sessionStart = new Date();
-  pausedTotal  = 0;
-  paused       = false;
-  pausedAt     = null;
+  pausedTotal  = 0; paused = false; pausedAt = null;
 
   document.querySelectorAll('.act-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -575,13 +543,11 @@ window.pickActivity = async (label, color, key, btn) => {
   fetchGroup();
 };
 
-/* ── PAUSE ─────────────────────────────────── */
+// ─── PAUSE ────────────────────────────────────────────────────────────────────
 window.togglePause = async () => {
   if (!me || !currentAct) return;
   if (!paused) {
-    // Pause
-    paused   = true;
-    pausedAt = new Date();
+    paused = true; pausedAt = new Date();
     $('btnPause').textContent = '▶ Продолжить';
     $('timerLabel').textContent = 'На паузе · нажми «Продолжить»';
     $('timerVal').style.color = '#f59e0b';
@@ -591,41 +557,56 @@ window.togglePause = async () => {
       status: '☕ Перерыв', color: '#f59e0b', last_seen: nowIso()
     }).eq('id', me.id);
     toast('☕ Перерыв');
-  } else {
-    resumeFromPause();
-  }
+  } else { resumeFromPause(); }
   fetchGroup();
 };
 
 async function resumeFromPause() {
   if (!paused || !pausedAt) return;
   pausedTotal += Date.now() - pausedAt.getTime();
-  paused  = false;
-  pausedAt = null;
-
+  paused = false; pausedAt = null;
   const labels = { study:'📚 Учусь', hw:'📝 Делаю ДЗ', coffee:'☕ Пью кофе', game:'🎮 Играю' };
   const colors = { study:'#22c55e', hw:'#3b82f6', coffee:'#f59e0b', game:'#8b5cf6' };
-  const label = labels[currentAct];
-  const color = colors[currentAct];
-
   $('btnPause').textContent = '☕ Перерыв';
   setTimerUI(currentAct, false);
-
   await sb.from('profiles').update({
-    status: label, color, last_seen: nowIso()
+    status: labels[currentAct], color: colors[currentAct], last_seen: nowIso()
   }).eq('id', me.id);
-  toast(`▶ Продолжаем — ${label}`);
+  toast(`▶ Продолжаем — ${labels[currentAct]}`);
   fetchGroup();
 }
 
-/* ── END SESSION ───────────────────────────── */
+// ─── END SESSION ──────────────────────────────────────────────────────────────
 window.endSession = async () => {
   if (!me) return;
-  currentAct   = null;
-  sessionStart = null;
-  paused       = false;
-  pausedAt     = null;
-  pausedTotal  = 0;
+
+  // ── Сохранить сессию в историю (НОВАЯ ФУНКЦИЯ 1) ──────────────────────────
+  // Считаем сколько секунд реально работали (без времени на паузе)
+  if (sessionStart && currentAct) {
+    const durationSec = Math.floor(
+      (Date.now() - sessionStart.getTime() - pausedTotal) / 1000
+    );
+    // Сохраняем только если сессия была хотя бы 10 секунд
+    if (durationSec >= 10) {
+      const actLabels = {
+        study:'📚 Учёба', hw:'📝 Домашнее задание',
+        coffee:'☕ Кофе-пауза', game:'🎮 Игры'
+      };
+      const name = me.user_metadata?.full_name || me.email?.split('@')[0] || 'Пользователь';
+      await sb.from('sessions').insert({
+        user_id:      me.id,
+        username:     name,
+        activity:     actLabels[currentAct] || currentAct,
+        duration_sec: durationSec
+      });
+      // Обновить список сессий на экране
+      loadSessions();
+    }
+  }
+  // ──────────────────────────────────────────────────────────────────────────
+
+  currentAct = null; sessionStart = null;
+  paused = false; pausedAt = null; pausedTotal = 0;
 
   document.querySelectorAll('.act-btn').forEach(b => b.classList.remove('active'));
   disableControls();
@@ -635,45 +616,38 @@ window.endSession = async () => {
     status: '🏠 Дома', color: '#94a3b8',
     session_started_at: null, last_seen: nowIso()
   }).eq('id', me.id);
-  toast('✅ Сессия завершена');
+
+  toast('✅ Сессия завершена и сохранена');
   fetchGroup();
 };
 
-/* ── TIMER UI HELPERS ──────────────────────── */
+// ─── TIMER UI ─────────────────────────────────────────────────────────────────
 function setTimerUI(key, isPaused) {
   const colors = { study:'#22c55e', hw:'#3b82f6', coffee:'#f59e0b', game:'#8b5cf6' };
   const labels = { study:'📚 Учусь', hw:'📝 Делаю ДЗ', coffee:'☕ Пью кофе', game:'🎮 Играю' };
   const icos   = { study:'📚', hw:'📝', coffee:'☕', game:'🎮' };
   const hints  = { study:'Время учёбы', hw:'Время на ДЗ', coffee:'Время за кофе', game:'Время в игре' };
-
-  $('timerVal').style.color = isPaused ? '#f59e0b' : colors[key];
-  $('timerIco').textContent = isPaused ? '☕' : icos[key];
-  $('timerIco').className = 'timer-ico ' + (isPaused ? '' : (key === 'coffee' ? 'spin' : 'swing'));
-  $('timerLabel').textContent = isPaused ? 'На паузе' : hints[key];
+  $('timerVal').style.color    = isPaused ? '#f59e0b' : colors[key];
+  $('timerIco').textContent    = isPaused ? '☕' : icos[key];
+  $('timerIco').className      = 'timer-ico ' + (isPaused ? '' : key === 'coffee' ? 'spin' : 'swing');
+  $('timerLabel').textContent  = isPaused ? 'На паузе' : hints[key];
   $('myStatusText').textContent = labels[key];
 }
-
 function resetTimerUI() {
   $('timerVal').textContent = '0 сек.';
   $('timerVal').style.color = 'var(--muted)';
   $('timerIco').textContent = '⏱';
-  $('timerIco').className = 'timer-ico';
-  $('timerLabel').textContent = 'Нет активной сессии';
+  $('timerIco').className   = 'timer-ico';
+  $('timerLabel').textContent  = 'Нет активной сессии';
   $('myStatusText').textContent = 'Выбери действие ниже';
 }
-
-function enableControls() {
-  $('btnPause').disabled = false;
-  $('btnEnd').disabled   = false;
-}
-
+function enableControls()  { $('btnPause').disabled = false; $('btnEnd').disabled = false; }
 function disableControls() {
-  $('btnPause').disabled = true;
-  $('btnEnd').disabled   = true;
+  $('btnPause').disabled = true; $('btnEnd').disabled = true;
   $('btnPause').textContent = '☕ Перерыв';
 }
 
-/* ── GROUP MONITOR ─────────────────────────── */
+// ─── GROUP MONITOR ────────────────────────────────────────────────────────────
 async function fetchGroup() {
   const { data, error } = await sb.from('profiles').select('*').order('username');
   if (error || !data) return;
@@ -683,16 +657,33 @@ async function fetchGroup() {
   const newTimers = {};
 
   const html = data.map(u => {
-    const isMe    = me && u.id === me.id;
-    const color   = u.color || '#94a3b8';
-    const lastSeen= u.last_seen ? new Date(u.last_seen).getTime() : 0;
-    const isOnline= (nowMs - lastSeen) < ONLINE_MS;
+    const isMe     = me && u.id === me.id;
+    const color    = u.color || '#94a3b8';
+    const lastSeen = u.last_seen ? new Date(u.last_seen).getTime() : 0;
+    // ИСПРАВЛЕНИЕ: человек онлайн если last_seen не старше ONLINE_MS
+    const isOnline = (nowMs - lastSeen) < ONLINE_MS;
     if (isOnline) onlineCount++;
 
     const hasTimer = u.session_started_at && u.status !== '🏠 Дома' && u.status !== '☕ Перерыв';
     if (hasTimer) newTimers[u.id] = new Date(u.session_started_at);
     const elapsed = hasTimer
       ? Math.floor((nowMs - new Date(u.session_started_at).getTime()) / 1000) : 0;
+
+    // Реакции на этого участника
+    const userReacts = Object.values(reactionsCache)
+      .filter(r => r.to_user_id === u.id);
+    const reactCounts = {};
+    userReacts.forEach(r => { reactCounts[r.emoji] = (reactCounts[r.emoji] || 0) + 1; });
+    const myReact = userReacts.find(r => r.from_user_id === me?.id);
+
+    const reactHtml = !isMe ? `
+      <div class="reaction-row">
+        ${['👍','❤️','🔥'].map(emoji => `
+          <button class="react-btn ${myReact?.emoji === emoji ? 'mine' : ''}"
+                  onclick="toggleReact('${u.id}','${emoji}')">
+            ${emoji}<span class="react-count">${reactCounts[emoji] || ''}</span>
+          </button>`).join('')}
+      </div>` : '';
 
     return `
       <div class="mrow ${isOnline ? 'online-row' : ''}">
@@ -711,41 +702,147 @@ async function fetchGroup() {
             ${hasTimer ? '⏱ ' + fmtShort(elapsed) : ''}
           </span>
         </div>
+        ${reactHtml}
       </div>`;
   }).join('');
 
   $('memberList').innerHTML = html ||
     '<p style="padding:14px;color:var(--muted);font-size:13px;text-align:center;">Участников нет</p>';
 
-  // Merge timers
   for (const uid of Object.keys(memberTimers)) {
     if (!newTimers[uid]) delete memberTimers[uid];
   }
   Object.assign(memberTimers, newTimers);
 
+  // Счётчик онлайна — теперь точный
   $('onlineCount').textContent = `${onlineCount} онлайн`;
+
   const t = new Date();
   $('lastUpdated').textContent =
     `Обновлено ${t.getHours().toString().padStart(2,'0')}:${t.getMinutes().toString().padStart(2,'0')}:${t.getSeconds().toString().padStart(2,'0')}`;
 }
 
-/* ── CHAT ──────────────────────────────────── */
+// ═══════════════════════════════════════════════════════════════════════════════
+// НОВАЯ ФУНКЦИЯ 1 — ИСТОРИЯ СЕССИЙ
+// Что делает: при каждом нажатии «Завершить» сессия сохраняется в таблицу
+// sessions в Supabase. Здесь мы загружаем последние 20 сессий пользователя
+// и показываем суммарную статистику по каждому типу активности.
+// ═══════════════════════════════════════════════════════════════════════════════
+async function loadSessions() {
+  if (!me) return;
+
+  const { data, error } = await sb
+    .from('sessions')
+    .select('*')
+    .eq('user_id', me.id)
+    .order('created_at', { ascending: false })
+    .limit(20);
+
+  if (error) { console.error('Sessions error:', error); return; }
+  if (!data?.length) return;
+
+  // Считаем суммарное время по активностям
+  const totals = {};
+  data.forEach(s => {
+    totals[s.activity] = (totals[s.activity] || 0) + s.duration_sec;
+  });
+
+  // Блок со статистикой (пиллюли сверху)
+  $('statRow').innerHTML = Object.entries(totals).map(([act, sec]) =>
+    `<div class="stat-pill">${act} — ${fmt(sec)}</div>`
+  ).join('');
+
+  // Список последних сессий
+  $('sessionsList').innerHTML = data.map(s => {
+    const date = new Date(s.created_at);
+    const dateStr = `${date.getDate().toString().padStart(2,'0')}.${(date.getMonth()+1).toString().padStart(2,'0')} ${date.getHours().toString().padStart(2,'0')}:${date.getMinutes().toString().padStart(2,'0')}`;
+    return `
+      <div class="sess-row">
+        <span class="sess-act">${esc(s.activity)}</span>
+        <span class="sess-dur">${fmt(s.duration_sec)}</span>
+        <span class="sess-date">${dateStr}</span>
+      </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// НОВАЯ ФУНКЦИЯ 2 — РЕАКЦИИ НА СТАТУС
+// Что делает: под каждым участником группы (кроме себя) есть три кнопки
+// реакций: 👍 ❤️ 🔥. Нажатие сохраняет реакцию в таблицу reactions в Supabase.
+// Повторное нажатие на ту же реакцию — убирает её (toggle).
+// Реальное время: реакции обновляются у всех через Supabase Realtime.
+// Одна реакция от одного пользователя к одному участнику (UNIQUE constraint).
+// ═══════════════════════════════════════════════════════════════════════════════
+async function loadReactions() {
+  const { data, error } = await sb.from('reactions').select('*');
+  if (error) { console.error('Reactions error:', error); return; }
+  reactionsCache = {};
+  // Строим кэш: ключ = id реакции
+  data?.forEach(r => { reactionsCache[r.id] = r; });
+  // Перерисовать группу с реакциями
+  fetchGroup();
+}
+
+function subscribeReactions() {
+  if (reactSub) reactSub.unsubscribe();
+  reactSub = sb.channel('reactions-room')
+    .on('postgres_changes', {
+      event: '*', schema: 'public', table: 'reactions'
+    }, payload => {
+      // При любом изменении реакций обновляем кэш и перерисовываем
+      if (payload.eventType === 'INSERT') {
+        reactionsCache[payload.new.id] = payload.new;
+      } else if (payload.eventType === 'DELETE') {
+        delete reactionsCache[payload.old.id];
+      }
+      fetchGroup();
+    })
+    .subscribe();
+}
+
+window.toggleReact = async (toUserId, emoji) => {
+  if (!me) { toast('⚠️ Войдите в аккаунт'); return; }
+
+  // Проверить — уже ли стоит такая реакция от меня к этому пользователю
+  const existing = Object.values(reactionsCache).find(
+    r => r.from_user_id === me.id && r.to_user_id === toUserId
+  );
+
+  if (existing) {
+    if (existing.emoji === emoji) {
+      // Та же реакция — убрать
+      await sb.from('reactions').delete().eq('id', existing.id);
+    } else {
+      // Другая реакция — заменить
+      await sb.from('reactions').update({ emoji }).eq('id', existing.id);
+      reactionsCache[existing.id] = { ...existing, emoji };
+      fetchGroup();
+    }
+  } else {
+    // Новая реакция
+    const { data, error } = await sb.from('reactions').insert({
+      from_user_id: me.id,
+      to_user_id:   toUserId,
+      emoji
+    }).select().single();
+    if (!error && data) {
+      reactionsCache[data.id] = data;
+      fetchGroup();
+    }
+  }
+};
+
+// ─── CHAT ──────────────────────────────────────────────────────────────────────
 async function loadChat() {
   const { data, error } = await sb.from('messages')
     .select('*').order('created_at', { ascending: true }).limit(80);
-  if (error) {
-    console.error('Chat load error:', error);
-    return;
-  }
+  if (error) { console.error('Chat load error:', error); return; }
   renderMessages(data || []);
 }
 
 function renderMessages(msgs) {
   const box = $('chatMessages');
-  if (!msgs.length) {
-    box.innerHTML = '<div class="chat-empty">Сообщений пока нет</div>';
-    return;
-  }
+  if (!msgs.length) { box.innerHTML = '<div class="chat-empty">Сообщений пока нет</div>'; return; }
   box.innerHTML = msgs.map(m => {
     const mine = me && m.user_id === me.id;
     return `<div class="cmsg ${mine ? 'mine' : ''}">
@@ -783,22 +880,12 @@ window.sendMsg = async () => {
   const input = $('chatInput');
   const text  = input.value.trim();
   if (!text) return;
-
   const name = me.user_metadata?.full_name || me.email?.split('@')[0] || 'Пользователь';
   input.value = '';
-
   const { error } = await sb.from('messages').insert({
-    user_id:  me.id,
-    username: name,
-    text:     text
+    user_id: me.id, username: name, text
   });
-
-  if (error) {
-    console.error('Send error:', error);
-    // Show the SQL hint
-    toast('❌ Ошибка чата — смотри инструкцию ниже');
-    input.value = text; // restore
-  }
+  if (error) { console.error('Send error:', error); toast('❌ Ошибка отправки'); input.value = text; }
 };
 </script>
 </body>
